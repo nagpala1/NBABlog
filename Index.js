@@ -9,9 +9,13 @@ $(function() {
     $("#bg").hide().fadeIn(1000);
     $("header").hide().delay(1000).fadeIn(1000);
     var $blogLi = $('#containerBlog > ul > li');
+    $("#containerBlog > ul li > h3, #containerBlog > ul li > p").css("opacity", 0);
     $blogLi.hide().delay(500).each(function(){
         $(this).delay(1000*$(this).index()).fadeIn(1000);
+        $(this).find("h3").delay(1000*($(this).index() + 1)).animate({opacity:1},1000);
+        $(this).find("p").delay(1250*($(this).index() + 1)).animate({opacity:1},1000);
     });
+
     var $containerMe = $('#containerMe');
     $containerMe.css({
         'opacity': 0,
