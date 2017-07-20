@@ -8,12 +8,34 @@ $(function() {
     $house.hide().fadeIn(2000);
     $("#bg").hide().fadeIn(1000);
     $("header").hide().delay(1000).fadeIn(1000);
-    var $blogLi = $('#containerBlog > ul > li');
+
+    var $latest = $("#containerBlog > ul >li:last").clone();
+    $("#containerBlog > ul").before('<h3 class="sub">Latest Entry:</h3>');
+    $("#containerBlog > ul").before('<ul id="latest"><li>' + $latest.html() + '</li></ul>');
+    $("#containerBlog > ul:not(#latest)").before('<h3 id="rest" class="sub">Total Entries (click to view):</h3>');
+
+    $("#containerBlog > ul:not(#latest) > li").hide();
+    var $blogLi = $('#containerBlog > ul#latest > li');
     $("#containerBlog > ul li > h3, #containerBlog > ul li > p").css("opacity", 0);
     $blogLi.hide().delay(500).each(function(){
         $(this).delay(1000*$(this).index()).fadeIn(1000);
         $(this).find("h3").delay(1000*($(this).index() + 1)).animate({opacity:1},1000);
         $(this).find("p").delay(1250*($(this).index() + 1)).animate({opacity:1},1000);
+    });
+
+    $("#rest").on('click', function(){
+        if ($("#containerBlog > ul:not(#latest) > li").css("display") =="none"){
+            $("#containerBlog > ul:not(#latest) > li").each(function(){
+                $(this).delay(500*$(this).index()).fadeIn(500);
+                $(this).find("h3").delay(500*($(this).index() + 1)).animate({opacity:1},500);
+                $(this).find("p").delay(750*($(this).index() + 1)).animate({opacity:1},500);
+            });
+            $(this).css("opacity", 0.7);
+        }else{
+            $("#containerBlog > ul:not(#latest) > li").hide();
+            $("#containerBlog > ul:not(#latest) li > h3, #containerBlog > ul:not(#latest) li > p").css("opacity", 0);
+            $(this).css("opacity", 1);
+        }
     });
 
     var $containerMe = $('#containerMe');
