@@ -12,7 +12,7 @@ $(function() {
     var $latest = $("#containerBlog > ul >li:last").clone();
     $("#containerBlog > ul").before('<h3 class="sub">Latest Entry:</h3>');
     $("#containerBlog > ul").before('<ul id="latest"><li>' + $latest.html() + '</li></ul>');
-    $("#containerBlog > ul:not(#latest)").before('<h3 id="rest" class="sub">Total Entries (click to view):</h3>');
+    $("#containerBlog > ul:not(#latest)").before('<h3 id="rest" class="sub">All Entries (click to view):</h3>');
 
     $("#containerBlog > ul:not(#latest) > li").hide();
     var $blogLi = $('#containerBlog > ul#latest > li');
